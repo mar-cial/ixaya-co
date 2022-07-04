@@ -1,13 +1,48 @@
-import { NextPage } from 'next';
+import axios, { AxiosResponse } from 'axios';
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next';
 import React from 'react';
 import PageLayoutView from '../../components/PageLayoutView';
+import ProductCardView from '../../components/ProductCardView';
+import { ProductsResponseData } from '../../model/products';
 
-type Props = {};
+export const getStaticProps: GetStaticProps = async () => {
+  let products;
+  const baseUrl: string = 'https://sandbox.ixaya.net/api/products';
+  const res = await fetch(baseUrl, {
+    method: 'GET',
+    headers: {
+      'X-API-KEY': 'kwk8wocoss0wwcw0s4ccs4gg4s8s8s4ow80wcs4s',
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      products = json;
+    })
+    .catch((err) => console.log(err));
 
-const ProductsPage: NextPage = (props: Props) => {
+  return {
+    props: {
+      data: products,
+    },
+  };
+};
+
+const ProductsPage: NextPage = ({
+  data,
+}: InferGetStaticPropsType<GetStaticProps>) => {
+  const productsResponse: ProductsResponseData = data;
   return (
     <PageLayoutView>
-      <h2>ola mundo</h2>
+      <main className="p-6">
+        <header>
+          <h2 className="text-4xl font-bold text-center">Products</h2>
+        </header>
+        <section className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4 auto-rows-fr">
+          {productsResponse.response.map((product) => (
+            <ProductCardView product={product} key={product.id} />
+          ))}
+        </section>
+      </main>
     </PageLayoutView>
   );
 };
