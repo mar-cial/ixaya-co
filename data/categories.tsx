@@ -1,15 +1,7 @@
-export interface Category {
-  title: string;
-  description: string;
-  image: StaticImageData;
-  id: number;
-  url: string;
-}
-
-import { StaticImageData } from 'next/image';
 import laptop from '../public/images/laptop.jpeg';
 import component from '../public/images/component.png';
 import order from '../public/images/order.jpg';
+import { Category } from '../model/category';
 
 const categories: Category[] = [
   {
