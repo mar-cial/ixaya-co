@@ -1,13 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { Category } from '../data/categories';
+import { CategoryCardProps } from '../model/category';
 
-type Props = {
-  category: Category;
-};
-
-const CategoryCardView = ({ category }: Props) => {
+const CategoryCardView = ({ category }: CategoryCardProps) => {
   return (
     <div className="flex flex-col w-full p-2">
       <div>
