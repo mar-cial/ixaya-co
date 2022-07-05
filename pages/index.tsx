@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import CategoryCardView from '../components/CategoryCardView';
-import HeaderView from '../components/HeaderView';
 import PageLayoutView from '../components/PageLayoutView';
 import categories from '../data/categories';
 

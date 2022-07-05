@@ -11,7 +11,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(baseUrl, {
     method: 'GET',
     headers: {
-      'X-API-KEY': 'kwk8wocoss0wwcw0s4ccs4gg4s8s8s4ow80wcs4s',
+      'X-API-KEY': process.env.IXAYA_API_KEY!,
     },
   })
     .then((response) => response.json())
